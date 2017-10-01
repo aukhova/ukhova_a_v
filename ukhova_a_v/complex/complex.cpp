@@ -4,7 +4,7 @@
 
 bool Complex ::  operator==(const Complex& rhs) const 
 {
-	return (re == rhs.re) && (im == rhs.im);
+	return (abs(re-rhs.re)<epsilon) && (abs(im-rhs.im)<epsilon);
 }
 
 bool Complex :: operator !=(const Complex& rhs) const 
@@ -99,9 +99,58 @@ Complex operator+(const Complex& lhs, const Complex& rhs)
 	return sum;
 }
 
+Complex operator+(const Complex& lhs, const double rhs)
+{
+	Complex sum(lhs);
+	sum += rhs;
+	return sum;
+}
+
+Complex operator+(const double lhs, const Complex& rhs)
+{
+	Complex sum(rhs);
+	sum += lhs;
+	return sum;
+}
+
+Complex operator-(const Complex& lhs, const double rhs)
+{
+	Complex itog(lhs);
+	itog -= rhs;
+	return itog;
+}
+
+Complex operator-(const double lhs, const Complex& rhs)
+{
+	Complex itog=Complex(lhs);
+	itog -= rhs;
+	return itog;
+}
+
 Complex operator-(const Complex& lhs, const Complex& rhs)
 {
 	return Complex(lhs.re - rhs.re, lhs.im - rhs.im);
+}
+
+Complex operator*(const Complex& lhs, const Complex& rhs)
+{
+	Complex itog(lhs);
+	itog *= rhs;
+	return itog;
+}
+
+Complex operator*(const Complex& lhs, const double rhs)
+{
+	Complex itog(lhs);
+	itog *= rhs;
+	return itog;
+}
+
+Complex operator*(const double lhs, const Complex& rhs)
+{
+	Complex itog(rhs);
+	itog *= lhs;
+	return itog;
 }
 
 std::ostream& Complex::writeTo(std::ostream& ostrm) const

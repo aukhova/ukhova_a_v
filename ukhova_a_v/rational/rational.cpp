@@ -123,7 +123,14 @@ Rational& Rational:: operator/=(const int rhs)
 
 std::ostream& Rational::writeTo(std::ostream& ostrm) const
 {
-	ostrm << chisl << separator << znam;
+	if (znam == 1)
+	{
+		ostrm << chisl;
+	}
+	else
+	{
+		ostrm << chisl << separator << znam;
+	}
 	return ostrm;
 }
 
@@ -185,9 +192,41 @@ Rational operator+(const Rational& lhs, const Rational& rhs)
 	return sum;
 }
 
+Rational operator+(const Rational& lhs, const int rhs)
+{
+	Rational sum(lhs);
+	sum += rhs;
+	sum.norm();
+	return sum;
+}
+
+Rational operator+(const int lhs, const Rational& rhs)
+{
+	Rational sum(rhs);
+	sum += lhs;
+	sum.norm();
+	return sum;
+}
+
 Rational operator-(const Rational& lhs, const Rational& rhs)
 {
 	Rational itog(lhs);
+	itog -= rhs;
+	itog.norm();
+	return itog;
+}
+
+Rational operator-(const Rational& lhs, const int rhs)
+{
+	Rational itog(lhs);
+	itog -= rhs;
+	itog.norm();
+	return itog;
+}
+
+Rational operator-(const int lhs, const Rational& rhs)
+{
+	Rational itog=Rational(lhs);
 	itog -= rhs;
 	itog.norm();
 	return itog;
@@ -201,9 +240,41 @@ Rational operator*(const Rational& lhs, const Rational& rhs)
 	return itog;
 }
 
+Rational operator*(const Rational& lhs, const int rhs)
+{
+	Rational itog(lhs);
+	itog *= rhs;
+	itog.norm();
+	return itog;
+}
+
+Rational operator*(const int lhs, const Rational& rhs)
+{
+	Rational itog(rhs);
+	itog *= lhs;
+	itog.norm();
+	return itog;
+}
+
 Rational operator/(const Rational& lhs, const Rational& rhs)
 {
 	Rational itog(lhs);
+	itog /= rhs;
+	itog.norm();
+	return itog;
+}
+
+Rational operator/(const Rational& lhs, const int rhs)
+{
+	Rational itog(lhs);
+	itog /= rhs;
+	itog.norm();
+	return itog;
+}
+
+Rational operator/(const int lhs, const Rational& rhs)
+{
+	Rational itog= Rational(lhs);
 	itog /= rhs;
 	itog.norm();
 	return itog;

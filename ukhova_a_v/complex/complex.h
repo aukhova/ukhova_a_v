@@ -22,6 +22,7 @@ struct  Complex
 
 	double re{ 0.0 };
 	double im{ 0.0 };
+	double epsilon = 0.000000000001;
 
 	static const char leftBrace{ '{' };
 	static const char separator{ ',' };
@@ -29,7 +30,17 @@ struct  Complex
 };
 
 Complex operator+(const Complex& lhs, const Complex& rhs);
+Complex operator+(const Complex& lhs, const double rhs);
+Complex operator+(const double lhs, const Complex& rhs);
+
 Complex operator-(const Complex& lhs, const Complex& rhs);
+Complex operator-(const Complex& lhs, const double rhs);
+Complex operator-(const double lhs, const Complex& rhs);
+
+Complex operator*(const Complex& lhs, const Complex& rhs);
+Complex operator*(const Complex& lhs, const double rhs);
+Complex operator*(const double lhs, const Complex& rhs);
+
 
 inline std::ostream&operator<<(std::ostream& ostrm, const Complex& rhs);
 

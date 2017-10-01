@@ -33,12 +33,21 @@ public:
 };
 
 Rational operator+(const Rational& lhs, const Rational& rhs);
+Rational operator+(const Rational& lhs, const int rhs);
+Rational operator+(const int lhs, const Rational& rhs);
 
 Rational operator-(const Rational& lhs, const Rational& rhs);
+Rational operator-(const Rational& lhs, const int rhs);
+Rational operator-(const int lhs, const Rational& rhs);
 
 Rational operator*(const Rational& lhs, const Rational& rhs);
+Rational operator*(const Rational& lhs, const int rhs);
+Rational operator*(const int lhs, const Rational& rhs);
+
 
 Rational operator/(const Rational& lhs, const Rational& rhs);
+Rational operator/(const Rational& lhs, const int rhs);
+Rational operator/(const int lhs, const Rational& rhs);
 
 inline std::ostream&operator<<(std::ostream& ostrm, const Rational& rhs);
 
