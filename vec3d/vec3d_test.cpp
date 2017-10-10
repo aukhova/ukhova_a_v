@@ -44,16 +44,14 @@ int main()
 	b = Vec3d(4, 8, 0);
 	cout << "a=" << a << endl;
 	cout << "b=" << b << endl;
-	double sc = a*b;
-	cout << "скалярное произведение a*b -> " << sc << endl; /*скалярное произведение*/
+	double sc = Vec3d::Scal(a, b);
+	cout << "Scal a*b -> " << sc << endl; /*скалярное произведение*/
 	a = Vec3d(1, 2, 3);
 	b = Vec3d(2, 1, -2);
 	cout << "a=" << a << endl;
 	cout << "b=" << b << endl;
-	//c = a*b;                         /*векторное произведение*/
-	//cout << "a*b -> " << c << endl;
-	a *= b;                          /*векторное произведение*/
-	cout << " векторное произведение a*=b -> a=" << a << endl;
+	c = Vec3d::Vect(a, b);                         /*векторное произведение*/
+	cout << " Vect a*b -> " << c << endl;
 	system("pause");
 	return 0;
 }

@@ -54,13 +54,6 @@ Vec3d& Vec3d::operator/=(const double rhs)
 	return *this;
 }
 
-Vec3d& Vec3d::operator*=(const Vec3d& rhs) /*векторное произведение*/
-{
-	Vec3d itog(y*rhs.z - z*rhs.y, z*rhs.x - x*rhs.z, x*rhs.y - y*rhs.x);
-	*this = itog;
-	return *this;
-}
-
 Vec3d operator+(const Vec3d& lhs, const Vec3d& rhs)
 {
 	Vec3d sum(lhs);
@@ -89,13 +82,6 @@ Vec3d operator*(double lhs, const Vec3d& rhs)
 	return itog;
 }
 
-//Vec3d operator*( Vec3d& lhs,  Vec3d& rhs) /*векторное произведение*/
-//{
-//	Vec3d itog(lhs);
-//	itog *= rhs;
-//	return itog;
-//}
-
 Vec3d operator/(const Vec3d& lhs, double rhs)
 {
 	Vec3d itog(lhs);
@@ -108,9 +94,14 @@ double Vec3d::Lenght()
 	return sqrt(x*x + y*y + z*z);
 }
 
-double operator*(const Vec3d& a, const Vec3d& b) /*скалярное произведение*/
+double Vec3d :: Scal(const Vec3d& a, const Vec3d& b) /*скалярное произведение*/
 {
 	return (a.x*b.x + a.y*b.y + a.z*b.z);
+}
+
+Vec3d Vec3d:: Vect(const Vec3d& a, const Vec3d& b) /*векторное произведение*/
+{
+	return Vec3d (a.y*b.z - a.z*b.y, a.z*b.x - a.x*b.z, a.x*b.y - a.y*b.x);
 }
 
 inline std::ostream& operator<<(std::ostream& ostrm, const Vec3d& rhs)

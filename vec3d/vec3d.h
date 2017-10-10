@@ -2,7 +2,7 @@
 #define VEC3D_H
 #include <iosfwd>
 #include <iostream>
-#include <sstream>#pragma once
+#include <sstream>
 
 struct Vec3d
 {
@@ -15,8 +15,9 @@ public:
 	Vec3d& operator+=(const Vec3d& rhs);
 	Vec3d& operator-=(const Vec3d& rhs);
 	Vec3d& operator*= (const double rhs);
-	Vec3d& operator*=(const Vec3d& rhs); /*векторное произведение*/
 	Vec3d& operator/= (const double rhs);
+	static double Scal(const Vec3d& a, const Vec3d& b); /*скалырное произведение*/
+	static Vec3d Vect(const Vec3d& a, const Vec3d& b); /*векторное произведение*/
 	double Lenght();
 	~Vec3d() = default;
 
@@ -38,8 +39,6 @@ Vec3d operator+(const Vec3d& lhs, const Vec3d& rhs);
 Vec3d operator-(const Vec3d& lhs, const Vec3d& rhs);
 Vec3d operator*(const Vec3d& lhs, double rhs);
 Vec3d operator*(double lhs, const Vec3d& rhs);
-//Vec3d operator*( Vec3d& lhs,  Vec3d& rhs);  /*векторное произведение*/
-double operator*(const Vec3d& lhs, const Vec3d& rhs); /*скалырное произведение*/
 Vec3d operator/(const Vec3d& lhs, double rhs);
 
 inline std::ostream&operator<<(std::ostream& ostrm, const Vec3d& rhs);
