@@ -1,52 +1,36 @@
-#include <iostream>
-#include <sstream>
 #include "complex.h"
 
-bool Complex ::  operator==(const Complex& rhs) const 
+#include <iostream>
+#include <sstream>
+
+bool Complex ::  operator==(const Complex& rhs) const
 {
-	return (abs(re-rhs.re)<epsilon) && (abs(im-rhs.im)<epsilon);
+	return (std::abs(re - rhs.re) < epsilon) && (std::abs(im - rhs.im) < epsilon);
 }
 
-bool Complex :: operator !=(const Complex& rhs) const 
+bool Complex :: operator!=(const Complex& rhs) const
 {
-	return !operator==(rhs); 
+	return !operator==(rhs);
 }
 
-Complex& Complex:: operator+=(const double rhs) 
+Complex& Complex:: operator+=(const double rhs)
 {
-	return operator+=(Complex(rhs)); 
+	return operator+=(Complex(rhs));
 }
 
-Complex& Complex:: operator-=(const double rhs) 
+Complex& Complex:: operator-=(const double rhs)
 {
-	return operator-=(Complex(rhs)); 
+	return operator-=(Complex(rhs));
 }
 
-inline std::ostream& operator<<(std::ostream& ostrm,const Complex& rhs)
+std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs)
 {
 	return rhs.writeTo(ostrm);
 }
 
-inline std::istream& operator>>(std::istream& istrm, Complex& rhs)
+std::istream& operator >> (std::istream& istrm, Complex& rhs)
 {
 	return rhs.readFrom(istrm);
-}
-
-bool testParse(const std::string& str)
-{
-	using namespace std;
-	istringstream istrm(str);
-	Complex z;
-	istrm >> z;
-	if (istrm.good())
-	{
-		cout << "Read success: " << str << "->" << z << endl;
-	}
-	else
-	{
-		cout << "Read error  : " << str << "->" << z << endl;
-	}
-	return istrm.good();
 }
 
 Complex::Complex(const double real)
@@ -122,7 +106,7 @@ Complex operator-(const Complex& lhs, const double rhs)
 
 Complex operator-(const double lhs, const Complex& rhs)
 {
-	Complex itog=Complex(lhs);
+	Complex itog = Complex(lhs);
 	itog -= rhs;
 	return itog;
 }

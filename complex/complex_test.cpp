@@ -2,6 +2,8 @@
 #include <sstream>
 #include "complex.h"
 
+bool testParse(const std::string& str);
+
 int main()
 {
 	using namespace std;
@@ -18,12 +20,12 @@ int main()
 	Complex b(5, 2);
 	m = z + 5;
 	cout << "z+5 -> m=" << m << endl;
-	m = 5+z;
+	m = 5 + z;
 	cout << "5+z -> m=" << m << endl;
 	m = z + Complex(5);
 	cout << "z+Complex(5) -> m=" << m << endl;
 	m = z;
-	m+= Complex (5);
+	m += Complex(5);
 	cout << "z+= Complex (5) -> m=" << m << endl;
 	z += 5;
 	cout << "z+= 5 -> z=" << z << endl;
@@ -35,11 +37,11 @@ int main()
 	cout << "a *= b -> a=" << a << endl;
 	m = a * 2;
 	cout << "a*2 -> m=" << m << endl;
-	m = 2*a;
+	m = 2 * a;
 	cout << "2*a -> m=" << m << endl;
 	a *= 2;
 	cout << "a *= 2 -> a=" << a << endl;
-	m = a-2;
+	m = a - 2;
 	cout << "a-2 -> m=" << m << endl;
 	m = a - Complex(2);
 	cout << "a-Complex(2) -> m=" << m << endl;
@@ -49,13 +51,30 @@ int main()
 	cout << "a-=b -> a=" << a << endl;
 	m = 7 - Complex(2);
 	cout << "7 - Complex(2) -> m=" << m << endl;
-	
+
 	bool p(z == b);
-	cout << "z == b"<<"->"<<p<<endl;
-	p=(z != b);
+	cout << "z == b" << "->" << p << endl;
+	p = (z != b);
 	cout << "z != a" << "->" << p << endl;
 	a = b;
 	cout << "a == b" << "->" << p << endl;
 	system("pause");
 	return 0;
+}
+
+bool testParse(const std::string& str)
+{
+	using namespace std;
+	istringstream istrm(str);
+	Complex z;
+	istrm >> z;
+	if (istrm.good())
+	{
+		cout << "Read success: " << str << "->" << z << endl;
+	}
+	else
+	{
+		cout << "Read error  : " << str << "->" << z << endl;
+	}
+	return istrm.good();
 }

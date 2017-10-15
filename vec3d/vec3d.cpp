@@ -1,8 +1,7 @@
-#include <iostream>
-#include <sstream>
-#include <iostream>
-#include <sstream>
 #include "vec3d.h"
+
+#include <iostream>
+#include <sstream>
 
 Vec3d::Vec3d(const double x_, const double y_, const double z_)
 	:x(x_)
@@ -17,7 +16,7 @@ bool Vec3d ::  operator==(const Vec3d& rhs) const
 	return ((abs(x - rhs.x)<epsilon) && (abs(y - rhs.y)<epsilon) && (abs(z - rhs.z)<epsilon));
 }
 
-bool Vec3d :: operator !=(const Vec3d& rhs) const
+bool Vec3d :: operator!=(const Vec3d& rhs) const
 {
 	return !operator==(rhs);
 }
@@ -94,22 +93,22 @@ double Vec3d::Lenght()
 	return sqrt(x*x + y*y + z*z);
 }
 
-double Vec3d :: Scal(const Vec3d& a, const Vec3d& b) /*скалярное произведение*/
+double Vec3d::Scal(const Vec3d& a, const Vec3d& b) /*скалярное произведение*/
 {
 	return (a.x*b.x + a.y*b.y + a.z*b.z);
 }
 
-Vec3d Vec3d:: Vect(const Vec3d& a, const Vec3d& b) /*векторное произведение*/
+Vec3d Vec3d::Vect(const Vec3d& a, const Vec3d& b) /*векторное произведение*/
 {
-	return Vec3d (a.y*b.z - a.z*b.y, a.z*b.x - a.x*b.z, a.x*b.y - a.y*b.x);
+	return Vec3d(a.y*b.z - a.z*b.y, a.z*b.x - a.x*b.z, a.x*b.y - a.y*b.x);
 }
 
-inline std::ostream& operator<<(std::ostream& ostrm, const Vec3d& rhs)
+std::ostream& operator<<(std::ostream& ostrm, const Vec3d& rhs)
 {
 	return rhs.writeTo(ostrm);
 }
 
-inline std::istream& operator >> (std::istream& istrm, Vec3d& rhs)
+std::istream& operator >> (std::istream& istrm, Vec3d& rhs)
 {
 	return rhs.readFrom(istrm);
 }
@@ -144,21 +143,4 @@ std::istream& Vec3d::readFrom(std::istream& istrm)
 		}
 	}
 	return istrm;
-}
-
-bool testParse(const std::string& str)
-{
-	using namespace std;
-	istringstream istrm(str);
-	Vec3d z;
-	istrm >> z;
-	if (istrm.good())
-	{
-		cout << "Read success: " << str << "->" << z << endl;
-	}
-	else
-	{
-		cout << "Read error  : " << str << "->" << z << endl;
-	}
-	return istrm.good();
 }
