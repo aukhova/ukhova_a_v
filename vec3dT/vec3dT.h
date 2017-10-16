@@ -13,6 +13,8 @@ public:
 	Vec3dT(const T& xV, const T& yV, const T& zV);
 	~Vec3dT() = default;
 
+	bool operator ==(const Vec3dT& rhs)const;
+	bool operator !=(const Vec3dT& rhs)const;
 	Vec3dT& operator+=(const Vec3dT& rhs);
 	Vec3dT& operator-=(const Vec3dT& rhs);
 	Vec3dT& operator*=(const double rhs);
@@ -60,6 +62,18 @@ Vec3dT<T>::Vec3dT(const T& xV, const T& yV, const T& zV)
 	, z(zV)
 {
 
+}
+
+template<typename T>
+bool Vec3dT<T> ::  operator==(const Vec3dT& rhs) const
+{
+	return ((abs(x - rhs.x)<epsilon) && (abs(y - rhs.y)<epsilon) && (abs(z - rhs.z)<epsilon));
+}
+
+template<typename T>
+bool Vec3dT<T> :: operator!=(const Vec3dT& rhs) const
+{
+	return !operator==(rhs);
 }
 
 template<typename T>
@@ -202,21 +216,21 @@ std::istream& Vec3dT<T>::readFrom(std::istream& istrm)
 	return istrm;
 }
 
-template<typename T>
-bool testParse(const std::string& str)
-{
-	using namespace std;
-	istringstream istrm(str);
-	Vec3dT<T> z;
-	istrm >> z;
-	if (istrm.good())
-	{
-		cout << "Read success: " << str << "->" << z << endl;
-	}
-	else
-	{
-		cout << "Read error  : " << str << "->" << z << endl;
-	}
-	return istrm.good();
-}
+//template<typename T>
+//bool testParse(const std::string& str)
+//{
+//	using namespace std;
+//	istringstream istrm(str);
+//	Vec3dT<T> z;
+//	istrm >> z;
+//	if (istrm.good())
+//	{
+//		cout << "Read success: " << str << "->" << z << endl;
+//	}
+//	else
+//	{
+//		cout << "Read error  : " << str << "->" << z << endl;
+//	}
+//	return istrm.good();
+//}
 #endif

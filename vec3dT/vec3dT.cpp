@@ -3,12 +3,6 @@
 int main()
 {
 	using namespace std;
-	/*Vec3dT<int> x;
-	x = Vec3dT<int>(5, 3, 4);
-	Vec3dT <int> p(3, 0, 4);
-	x += p;
-	p *= 3;
-	p /= 3;*/
 
 	Vec3dT<double> a;
 	Vec3dT<double> b(5, 3, 4);
@@ -22,6 +16,10 @@ int main()
 	testParse("{8.9,9,1");*/
 	cout << "a=" << a << endl;
 	a = b;
+	bool p = a == b;
+	cout << "a==b ->" << p << endl;
+	p = a != b;
+	cout << "a!=b ->" << p << endl;
 	cout << "a=" << a << endl;
 	cout << "b=" << b << endl;
 	c = a + b;
