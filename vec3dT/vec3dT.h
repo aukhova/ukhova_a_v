@@ -13,8 +13,9 @@ public:
 	Vec3dT(const T& xV, const T& yV, const T& zV);
 	~Vec3dT() = default;
 
-	bool operator ==(const Vec3dT& rhs)const;
-	bool operator !=(const Vec3dT& rhs)const;
+	bool operator ==(const Vec3dT<T>& rhs);
+	bool compareTo(const Vec3dT<T>& rhs);
+	bool operator !=(const Vec3dT& rhs);
 	Vec3dT& operator+=(const Vec3dT& rhs);
 	Vec3dT& operator-=(const Vec3dT& rhs);
 	Vec3dT& operator*=(const double rhs);
@@ -64,14 +65,30 @@ Vec3dT<T>::Vec3dT(const T& xV, const T& yV, const T& zV)
 
 }
 
-template<typename T>
-bool Vec3dT<T> ::  operator==(const Vec3dT& rhs) const
+template <typename T>
+bool Vec3dT<T>::operator==(const Vec3dT<T>& rhs) 
 {
-	return ((abs(x - rhs.x)<epsilon) && (abs(y - rhs.y)<epsilon) && (abs(z - rhs.z)<epsilon));
+	return compareTo(rhs);
+}
+
+template <typename T>
+bool Vec3dT<T>::compareTo(const Vec3dT<T>& rhs)
+{
+	return ((x == rhs.x) && (y == rhs.y) && (z == rhs.z));
+}
+
+bool Vec3dT<double>::compareTo(const Vec3dT<double>& rhs)
+{
+	return ((x - rhs.x) < epsilon && (y - rhs.y) < epsilon && (z - rhs.z) < epsilon);
+}
+
+bool Vec3dT<float>::compareTo(const Vec3dT<float>& rhs)
+{
+	return ((x - rhs.x) < epsilon && (y - rhs.y) < epsilon && (z - rhs.z) < epsilon);
 }
 
 template<typename T>
-bool Vec3dT<T> :: operator!=(const Vec3dT& rhs) const
+bool Vec3dT<T> :: operator!=(const Vec3dT& rhs)
 {
 	return !operator==(rhs);
 }

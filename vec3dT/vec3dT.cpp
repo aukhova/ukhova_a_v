@@ -16,6 +16,8 @@ int main()
 	testParse("{8.9,9,1");*/
 	cout << "a=" << a << endl;
 	a = b;
+	cout << "a=" << a << endl;
+	cout << "b=" << b << endl;
 	bool p = a == b;
 	cout << "a==b ->" << p << endl;
 	p = a != b;

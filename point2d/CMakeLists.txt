@@ -1,0 +1,1 @@
+add_executable(point2d point2d.cpp )
