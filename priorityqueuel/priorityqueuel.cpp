@@ -43,41 +43,69 @@ void PriorityQueueL::Push(const int& x)
 	}
 }
 
+//void PriorityQueueL::PushPr(const int& x)
+//{
+//	if (isEmpty())
+//	{
+//		pTail_ = new Node(nullptr, x);
+//		pHead_ = pTail_;
+//	}
+//
+//	else
+//	{
+//		if (x > pTail_->pData_)
+//		{
+//			if (x > pHead_->pData_)
+//			{
+//				Node* newHead = new Node(pHead_, x);
+//				pHead_ = newHead;
+//			}
+//			else
+//			{
+//				Node* t = pHead_;
+//				while ((t->pNext_)->pData_ > x)
+//				{
+//					t = t->pNext_;
+//				}
+//				/*Node* vsp = t->pNext_;*/
+//				t->pNext_ = new Node(t->pNext_, x);
+//			}
+//		}
+//		else
+//		{
+//			pTail_->pNext_ = new Node(nullptr, x);
+//			pTail_ = pTail_->pNext_;
+//		}
+//		
+//	}
+//}
+
 void PriorityQueueL::PushPr(const int& x)
 {
-	if (isEmpty())
+	if ((isEmpty())||(x > pHead_->pData_))
 	{
-		pTail_ = new Node(nullptr, x);
-		pHead_ = pTail_;
+		pHead_ = new Node(pHead_, x);
+		if (pTail_ == nullptr)
+		{
+			pTail_ = pHead_;
+		}
+		return;
 	}
 
-	else
+	if (x <pTail_->pData_)
 	{
-		if (x > pTail_->pData_)
-		{
-			if (x > pHead_->pData_)
-			{
-				Node* newHead = new Node(pHead_, x);
-				pHead_ = newHead;
-			}
-			else
-			{
-				Node* t = pHead_;
-				while ((t->pNext_)->pData_ > x)
-				{
-					t = t->pNext_;
-				}
-				/*Node* vsp = t->pNext_;*/
-				t->pNext_ = new Node(t->pNext_, x);
-			}
-		}
-		else
-		{
-			pTail_->pNext_ = new Node(nullptr, x);
-			pTail_ = pTail_->pNext_;
-		}
-		
+		pTail_->pNext_ = new Node(nullptr, x);
+		pTail_ = pTail_->pNext_;
+		return;
 	}
+			Node* t = pHead_;
+			while ((t->pNext_)->pData_ > x)
+			{
+				t = t->pNext_;
+			}
+			t->pNext_ = new Node(t->pNext_, x);
+				
+
 }
 
 void PriorityQueueL::Pop()
@@ -139,3 +167,13 @@ PriorityQueueL::~PriorityQueueL()
 		Pop();
 	}
 }
+
+//PriorityQueueL& PriorityQueueL :: operator=(const PriorityQueueL& rhs)
+//{
+//	Node* tnew = rhs.pHead_;
+//	while (tnew != nullptr)
+//	{
+//		if(t)
+//	}
+//	return *this;
+//}

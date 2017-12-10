@@ -8,7 +8,7 @@ public:
 	PriorityQueueL() = default;
 	~PriorityQueueL();
 	PriorityQueueL(const PriorityQueueL& rhs);
-	//PriorityQueueL operator=(const PriorityQueueL& rhs);
+	/*PriorityQueueL operator=(const PriorityQueueL& rhs);*/
 	void Push(const int& x);
 	void Pop();
 	void PushPr(const int& x);

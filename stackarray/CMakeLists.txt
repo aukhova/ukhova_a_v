@@ -1,0 +1,1 @@
+add_executable(stackarray stackarray.cpp stackarray.h stackarray_test.cpp)
