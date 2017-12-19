@@ -61,6 +61,6 @@ int main()
 		throw;
 	}
 
-	system("pause");
+	
 	return 0;
 }

@@ -136,3 +136,17 @@ ostream& operator<<(std::ostream& ostrm, const Array& rhs)
 {
 	return rhs.writeTo(ostrm);
 }
+
+void Array::swap(Array& lhs, Array& rhs)
+{
+	int* t_ = lhs.pData_;
+	lhs.pData_ = rhs.pData_;
+	rhs.pData_ = t_;
+}
+
+Array& Array::operator=(const Array& rhs)
+{
+	swap(*this, Array(rhs));
+	capacity_ = rhs.capacity_;
+	return *this;
+}

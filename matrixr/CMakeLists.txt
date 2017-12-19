@@ -1,0 +1,1 @@
+add_executable(matrixr matrixr.cpp matrixr.h matrixr_test.cpp)

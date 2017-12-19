@@ -25,9 +25,8 @@ int main()
 	QueueArray z;
 	z = x;
 	cout << "z:" << z << endl;
-	/*y.~QueueArray();
-	cout << "y(x)~:" << y << endl;*/
+	z.~QueueArray();
+	cout << "z~:" << z << endl;
 
-	/*system("pause");*/
 	return 0;
 }

@@ -17,25 +17,28 @@ int main()
 	cout << "Capacity of array: " << n2.lenth() << endl;
 	cout << endl;
 	n2.Add(2, 2);
-	cout << "Array with elements: " << n2 << endl;
+	cout << "n2.Add(2, 2): " << n2 << endl;
 	cout << "Size of array: " << n2.size() << endl;
 	cout << "Capacity of array: " << n2.lenth() << endl;
 	cout << endl;
 	Array N2(n2);
-	cout << "Array with elements: " << N2 << endl;
+	cout << "N2(n2): " << N2 << endl;
 	cout << "Size of array: " << N2.size() << endl;
 	cout << "Capacity of array: " << N2.lenth() << endl;
 	cout << endl;
 	Array NN = N2;
-	cout << "Array with elements: " << NN << endl;
+	cout << "NN = N2: " << NN << endl;
 	cout << "Size of array: " << NN.size() << endl;
 	cout << "Capacity of array: " << NN.lenth() << endl;
 	cout << endl;
 	NN.remove(0);
-	cout << "Array with elements: " << NN << endl;
+	cout << "NN.remove(0): " << NN << endl;
 	cout << "Size of array: " << NN.size() << endl;
 	cout << "Capacity of array: " << NN.lenth() << endl;
 	cout << endl;
+	N2.~Array();
+	cout << "N2: " << N2 << endl;
+
 
 	try
 	{
@@ -235,6 +238,5 @@ int main()
 		throw;
 	}
 
-	system("pause");
 	return 0;
 };

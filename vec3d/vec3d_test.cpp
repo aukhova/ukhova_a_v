@@ -56,7 +56,7 @@ int main()
 	cout << "b=" << b << endl;
 	c = Vec3d::Vect(a, b);                         /*векторное произведение*/
 	cout << "Vect a*b -> " << c << endl;
-	system("pause");
+	
 	return 0;
 }
 

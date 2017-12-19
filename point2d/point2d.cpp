@@ -57,7 +57,7 @@ int main()
 	cout << "n=" << n << endl;
 	n = n.povorot(90);
 	cout << "n.povorot(90)=" << n << endl;
-	system("pause");
+	
 	return 0;
 };
 

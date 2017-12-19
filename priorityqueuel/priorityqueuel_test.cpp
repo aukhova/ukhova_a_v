@@ -39,6 +39,6 @@ int main()
 	y.PushPr(7);
 	cout << "y:" << y << endl;
 
-	system("pause");
+	
 	return 0;
 }

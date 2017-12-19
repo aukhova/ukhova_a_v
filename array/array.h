@@ -23,6 +23,7 @@ public:
 	void Add(const int x);
 	void Add(const int x, const int i);
 	void remove(const int i);
+	void swap(Array& lhs, Array& rhs);
 private:
 	static const int defaultSize = 5;
 	ptrdiff_t capacity_{ 0 };
