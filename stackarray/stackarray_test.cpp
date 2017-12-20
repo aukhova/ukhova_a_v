@@ -26,12 +26,14 @@ int main()
 	z = y;
 	cout << "Stack z=y:" << endl;
 	cout << z << endl;
+	cout << "Stack y:" << endl;
+	cout << y << endl;
 	y.Top() = 25;
 	cout << "Change top: " << y.Top() << endl;
 	cout << "Stack y:" << endl;
 	cout << y << endl;
 	y.~StackArray();
-	cout << y << endl;
+	cout <<"~y  "<< y << endl;
 
 	try
 	{
@@ -61,6 +63,5 @@ int main()
 		throw;
 	}
 
-	
 	return 0;
 }

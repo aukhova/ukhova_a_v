@@ -49,12 +49,37 @@ void StackArray::swap(StackArray& lhs, StackArray& rhs)
 	rhs.pData_ = t_;
 }
 
+//StackArray& StackArray::operator=(const StackArray& rhs)
+//{
+//	swap(*this, StackArray(rhs));
+//	capacity_ = rhs.capacity_;
+//	return *this;
+//}
+
 StackArray& StackArray::operator=(const StackArray& rhs)
 {
-	swap(*this, StackArray(rhs));
-	capacity_ = rhs.capacity_;
+	if (!rhs.isEmpty()) {
+		if (isEmpty()) {
+			pData_ = new int[rhs.size_]{ int() };
+			copy(rhs, rhs.capacity_);
+		}
+		else {
+			swap(*this, StackArray(rhs));
+			capacity_ = rhs.capacity_;
+		}
+	}
 	return *this;
 }
+
+void StackArray::copy(const StackArray& rhs, const ptrdiff_t& lenth)
+{
+	for (int i(0); i <= lenth; i++)
+	{
+		pData_[i] = rhs.pData_[i];
+	}
+	capacity_ = lenth;
+}
+
 
 bool StackArray:: isEmpty()const
 {

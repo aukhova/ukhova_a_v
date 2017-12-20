@@ -23,9 +23,10 @@ public:
 	
 private:
 	StackArray resize();
-	StackArray resize(const ptrdiff_t i);
+	/*StackArray resize(const ptrdiff_t i);*/
 	int& operator[](const ptrdiff_t i);
 	const int& operator[](const ptrdiff_t i) const;
+	void copy(const StackArray& rhs, const ptrdiff_t& size);
 	void swap(StackArray& lhs, StackArray& rhs);
 	static const int defaultSize = 5;
 	ptrdiff_t capacity_{ 0 };
