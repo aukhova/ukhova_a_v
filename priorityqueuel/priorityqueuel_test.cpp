@@ -39,6 +39,13 @@ int main()
 	y.PushPr(7);
 	cout << "y:" << y << endl;
 
-	
+	PriorityQueueL z;
+	z.Push(1);
+	z.Push(2);
+	z.Push(3);
+	cout << "z:" << z << endl;
+	z = y;
+	cout << "z=y:" << z << endl;
+
 	return 0;
 }

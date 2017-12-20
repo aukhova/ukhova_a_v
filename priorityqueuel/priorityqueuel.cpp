@@ -168,12 +168,42 @@ PriorityQueueL::~PriorityQueueL()
 	}
 }
 
-//PriorityQueueL& PriorityQueueL :: operator=(const PriorityQueueL& rhs)
-//{
-//	Node* tnew = rhs.pHead_;
-//	while (tnew != nullptr)
-//	{
-//		if(t)
-//	}
-//	return *this;
-//}
+PriorityQueueL& PriorityQueueL::operator=(const PriorityQueueL& rhs)
+{
+	Node* pCopyTo = pHead_;
+	Node* pCopyFrom = rhs.pHead_;
+	while ((pCopyTo->pNext_ != nullptr) && (pCopyFrom->pNext_ != nullptr))
+	{
+		pCopyTo->pData_ = pCopyFrom->pData_;
+		pCopyTo = pCopyTo->pNext_;
+		pCopyFrom = pCopyFrom->pNext_;
+	}
+	if ((pCopyTo->pNext_ == nullptr) && (pCopyFrom->pNext_ != nullptr))
+	{
+		pCopyTo->pData_ = pCopyFrom->pData_;
+		pCopyFrom = pCopyFrom->pNext_;
+		while (pCopyFrom != nullptr)
+		{
+			pCopyTo->pNext_ = new Node(nullptr, pCopyFrom->pData_);
+			pCopyTo = pCopyTo->pNext_;
+			pCopyFrom = pCopyFrom->pNext_;
+		}
+	}
+	else
+	{
+		if ((pCopyFrom->pNext_ == nullptr) && (pCopyTo->pNext_ != nullptr))
+		{
+			pCopyTo->pData_ = pCopyFrom->pData_;
+			Node* pContinue(pCopyTo->pNext_);
+			pCopyTo->pNext_ = nullptr;
+			Node* pDelete;
+			while (pContinue != nullptr)
+			{
+				pDelete = pContinue;
+				pContinue = pDelete->pNext_;
+				delete pDelete;
+			}
+		}
+	}
+	return *this;
+}
