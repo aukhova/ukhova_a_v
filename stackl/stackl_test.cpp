@@ -21,6 +21,7 @@ int main()
 	StackL z;
 	cout << "Stack z:" << endl;
 	cout << z << endl;
+	z.Push(3);
 	x.Clear();
 	cout << "IsEmpty after Clear: " << x.isEmpty() << endl;
 	z = y;

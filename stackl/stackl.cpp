@@ -78,17 +78,40 @@ StackL::StackL(const StackL& rhs)
 
 StackL& StackL::operator=(const StackL& rhs)
 {
-	StackL turned;
-	Node* pForget(rhs.pHead_);
-	while (nullptr != (pForget))
+	Node* pCopyTo = pHead_;
+	Node* pCopyFrom = rhs.pHead_;
+	while ((pCopyTo->pNext_ != nullptr) && (pCopyFrom->pNext_ != nullptr))
 	{
-		turned.Push(pForget->pData_);
-		pForget = pForget->pNext_;
+		pCopyTo->pData_ = pCopyFrom->pData_;
+		pCopyTo = pCopyTo->pNext_;
+		pCopyFrom = pCopyFrom->pNext_;
 	}
-	while (!turned.isEmpty())
+	if ((pCopyTo->pNext_ == nullptr) && (pCopyFrom->pNext_ != nullptr))
 	{
-		Push(turned.Top());
-		turned.Pop();
+		pCopyTo->pData_ = pCopyFrom->pData_;
+		pCopyFrom = pCopyFrom->pNext_;
+		while (pCopyFrom != nullptr)
+		{
+			pCopyTo->pNext_ = new Node(nullptr, pCopyFrom->pData_);
+			pCopyTo = pCopyTo->pNext_;
+			pCopyFrom = pCopyFrom->pNext_;
+		}
+	}
+	else
+	{
+		if ((pCopyFrom->pNext_ == nullptr) && (pCopyTo->pNext_ != nullptr))
+		{
+			pCopyTo->pData_ = pCopyFrom->pData_;
+			Node* pContinue(pCopyTo->pNext_);
+			pCopyTo->pNext_ = nullptr;
+			Node* pDelete;
+			while (pContinue != nullptr)
+			{
+				pDelete = pContinue;
+				pContinue = pDelete->pNext_;
+				delete pDelete;
+			}
+		}
 	}
 	return *this;
 }
