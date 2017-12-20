@@ -26,6 +26,7 @@ QueueArray QueueArray::resize()
 	pData_ = new int[size_] { int() };
 	for (int i = temp.pHead_; i<=temp.pTail_; ++i)
 		pData_[i] = temp.pData_[i];
+	(*this).InStart();
 	return(*this);
 }
 
@@ -138,14 +139,38 @@ QueueArray::QueueArray(const QueueArray& rhs)
 
 QueueArray QueueArray::InStart()
 {
-	QueueArray temp(*this);  //увеличиваем размер массива 
-	if (!(pData_ == nullptr))
-	{
-		delete[] pData_;
-		pData_ = nullptr;
-	}
-	pData_ = new int[size_] { int() };
+	
 	for (int i =0; i <capacity_; ++i)
-		pData_[i] = temp.pData_[i+pHead_];
+		pData_[i] = pData_[i+pHead_];
+	pHead_ = 0;
+	pTail_ = capacity_ - 1;
 	return(*this);
+}
+
+QueueArray& QueueArray::operator=(const QueueArray& rhs)
+{
+	if (!rhs.isEmpty()) {
+		if (isEmpty()) {
+			capacity_ = rhs.capacity_;
+			pHead_ = rhs.pHead_;
+			pTail_ = rhs.pTail_;
+			pData_ = new int[rhs.size_]{ int() };
+			for (int i = pHead_; i <= rhs.pTail_; i++)
+				pData_[i] = rhs.pData_[i];
+		}
+			
+		else {
+			swap(*this, QueueArray(rhs));
+			capacity_ = rhs.capacity_;
+		}
+	}
+	(*this).InStart();
+	return *this;
+}
+
+void QueueArray::swap(QueueArray& lhs, QueueArray& rhs)
+{
+	int* t_ = lhs.pData_;
+	lhs.pData_ = rhs.pData_;
+	rhs.pData_ = t_;
 }

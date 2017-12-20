@@ -12,6 +12,8 @@ int main()
 	cout << "x:" << x << endl;
 	QueueArray y(x);
 	cout << "y(x):" << y << endl;
+	y.~QueueArray();
+	cout << "y(x)~:" << y << endl;
 	x.Pop();
 	cout << "x:" << x << endl;
 	cout << "Top: " << x.Top() << endl;
@@ -25,8 +27,7 @@ int main()
 	QueueArray z;
 	z = x;
 	cout << "z:" << z << endl;
-	z.~QueueArray();
-	cout << "z~:" << z << endl;
-
+	
+	
 	return 0;
 }

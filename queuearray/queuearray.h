@@ -13,6 +13,7 @@ public:
 	void Pop();
 	int& Top();
 	const int& Top()const;
+	QueueArray& operator=(const QueueArray& rhs);
 	std::ostream& writeTo(std::ostream& ostrm) const;
 
 private:
@@ -20,7 +21,7 @@ private:
 	QueueArray InStart();
 	int& operator[](const ptrdiff_t i);
 	const int& operator[](const ptrdiff_t i) const;
-	/*void swap(QueueArray& lhs, QueueArray& rhs);*/
+	void swap(QueueArray& lhs, QueueArray& rhs);
 	static const int defaultSize = 5;
 	ptrdiff_t pHead_{ 0 };
 	ptrdiff_t pTail_{ 0 };
