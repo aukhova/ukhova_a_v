@@ -193,3 +193,4 @@ MatrixR MatrixR::operator*(const MatrixR& rhs) const
 	}
 	return result;
 }
+

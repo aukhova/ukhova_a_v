@@ -76,46 +76,6 @@ StackL::StackL(const StackL& rhs)
 	}
 }
 
-StackL& StackL::operator=(const StackL& rhs)
-{
-	Node* pCopyTo = pHead_;
-	Node* pCopyFrom = rhs.pHead_;
-	while ((pCopyTo->pNext_ != nullptr) && (pCopyFrom->pNext_ != nullptr))
-	{
-		pCopyTo->pData_ = pCopyFrom->pData_;
-		pCopyTo = pCopyTo->pNext_;
-		pCopyFrom = pCopyFrom->pNext_;
-	}
-	if ((pCopyTo->pNext_ == nullptr) && (pCopyFrom->pNext_ != nullptr))
-	{
-		pCopyTo->pData_ = pCopyFrom->pData_;
-		pCopyFrom = pCopyFrom->pNext_;
-		while (pCopyFrom != nullptr)
-		{
-			pCopyTo->pNext_ = new Node(nullptr, pCopyFrom->pData_);
-			pCopyTo = pCopyTo->pNext_;
-			pCopyFrom = pCopyFrom->pNext_;
-		}
-	}
-	else
-	{
-		if ((pCopyFrom->pNext_ == nullptr) && (pCopyTo->pNext_ != nullptr))
-		{
-			pCopyTo->pData_ = pCopyFrom->pData_;
-			Node* pContinue(pCopyTo->pNext_);
-			pCopyTo->pNext_ = nullptr;
-			Node* pDelete;
-			while (pContinue != nullptr)
-			{
-				pDelete = pContinue;
-				pContinue = pDelete->pNext_;
-				delete pDelete;
-			}
-		}
-	}
-	return *this;
-}
-
 void StackL::Clear()
 {
 	while (!isEmpty())
@@ -142,4 +102,66 @@ ostream& StackL::writeTo(std::ostream& ostrm) const
 ostream& operator<<(std::ostream& ostrm, const StackL& rhs)
 {
 	return rhs.writeTo(ostrm);
+}
+
+StackL& StackL::operator=(const StackL& rhs)
+{
+	Node* pCopyTo = pHead_;
+	Node* pCopyFrom = rhs.pHead_;
+	if ((pCopyTo != nullptr) && (pCopyFrom != nullptr)) {
+		while ((pCopyTo->pNext_ != nullptr) && (pCopyFrom->pNext_ != nullptr))
+		{
+			pCopyTo->pData_ = pCopyFrom->pData_;
+			pCopyTo = pCopyTo->pNext_;
+			pCopyFrom = pCopyFrom->pNext_;
+		}
+		if ((pCopyTo->pNext_ == nullptr) && (pCopyFrom->pNext_ != nullptr))
+		{
+			pCopyTo->pData_ = pCopyFrom->pData_;
+			pCopyFrom = pCopyFrom->pNext_;
+			while (pCopyFrom != nullptr)
+			{
+				pCopyTo->pNext_ = new Node(nullptr, pCopyFrom->pData_);
+				pCopyTo = pCopyTo->pNext_;
+				pCopyFrom = pCopyFrom->pNext_;
+			}
+		}
+		else
+		{
+			if ((pCopyFrom->pNext_ == nullptr) && (pCopyTo->pNext_ != nullptr))
+			{
+				pCopyTo->pData_ = pCopyFrom->pData_;
+				Node* pContinue(pCopyTo->pNext_);
+				pCopyTo->pNext_ = nullptr;
+				Node* pDelete;
+				while (pContinue != nullptr)
+				{
+					pDelete = pContinue;
+					pContinue = pDelete->pNext_;
+					delete pDelete;
+				}
+			}
+		}
+	}
+	else {
+		if ((pCopyTo == nullptr) && (pCopyFrom != nullptr)) {
+			pHead_ = new Node(pCopyTo, pCopyFrom->pData_);
+			pCopyTo = pHead_;
+			pCopyFrom = pCopyFrom->pNext_;
+			while (pCopyFrom != nullptr)
+			{
+				pCopyTo->pNext_ = new Node(nullptr, pCopyFrom->pData_);
+				pCopyTo = pCopyTo->pNext_;
+				pCopyFrom = pCopyFrom->pNext_;
+			}
+		}
+		else {
+			if ((pCopyTo != nullptr) && (pCopyFrom == nullptr)) {
+				(*this).Clear();
+			}
+		}
+	}
+
+	return *this;
+
 }

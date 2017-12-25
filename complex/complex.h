@@ -49,5 +49,5 @@ std::ostream&operator<<(std::ostream& ostrm, const Complex& rhs);
 std::istream&operator >> (std::istream& istrm, Complex& rhs);
 
 
-#endif // ! COMPLEX_H
+#endif 
 

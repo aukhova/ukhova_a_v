@@ -3,14 +3,15 @@
 #include <iostream>
 #include <sstream>
 
+using namespace std;
+
 Rational::Rational(const int chislt, const int znamn)
 	: chisl(chislt)
 	, znam(znamn)
 {
 	if (0 == znamn)
 	{
-		chisl = 0;
-		znam = 0;
+		throw invalid_argument("Error: Znam can't be = 0");
 	}
 }
 
@@ -93,18 +94,25 @@ Rational& Rational:: operator*=(const int rhs)
 
 Rational& Rational:: operator/=(const Rational& rhs)
 {
-	if (rhs.chisl == 0) {
-		chisl = 0;
-		znam = 0;
+	if (0 == rhs.chisl)
+	{
+		throw invalid_argument("Error: Nelza /0");
 	}
-	chisl *= rhs.znam;
-	znam *= rhs.chisl;
-	(*this).norm();
-	return *this;
+	else {
+		chisl *= rhs.znam;
+		znam *= rhs.chisl;
+		(*this).norm();
+		return *this;
+	}
 }
 
 Rational& Rational:: operator/=(const int rhs)
 {
+	if (0 == rhs)
+	{
+		throw invalid_argument("Error: Nelza /0");
+	}
+	else
 	return operator/=(Rational(rhs));
 }
 
@@ -227,26 +235,44 @@ Rational operator*(const int lhs, const Rational& rhs)
 
 Rational operator/(const Rational& lhs, const Rational& rhs)
 {
-	Rational itog(lhs);
-	itog /= rhs;
-	itog.norm();
-	return itog;
+	if (0 == rhs.chisl)
+	{
+		throw invalid_argument("Error: Nelza /0");
+	}
+	else {
+		Rational itog(lhs);
+		itog /= rhs;
+		itog.norm();
+		return itog;
+	}
 }
 
 Rational operator/(const Rational& lhs, const int rhs)
 {
-	Rational itog(lhs);
-	itog /= rhs;
-	itog.norm();
-	return itog;
+	if (0 == rhs)
+	{
+		throw invalid_argument("Error: Nelza /0");
+	}
+	else {
+		Rational itog(lhs);
+		itog /= rhs;
+		itog.norm();
+		return itog;
+	}
 }
 
 Rational operator/(const int lhs, const Rational& rhs)
 {
-	Rational itog = Rational(lhs);
-	itog /= rhs;
-	itog.norm();
-	return itog;
+	if (0 == rhs.chisl)
+	{
+		throw invalid_argument("Error: Nelza /0");
+	}
+	else {
+		Rational itog = Rational(lhs);
+		itog /= rhs;
+		itog.norm();
+		return itog;
+	}
 }
 
 Rational& Rational:: operator=(const int rhs)

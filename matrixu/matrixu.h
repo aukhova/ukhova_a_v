@@ -22,6 +22,8 @@ public:
 	int Row_() const;
 	int Col_() const;
 	MatrixU& resize(const ptrdiff_t r, const ptrdiff_t c);
+	MatrixU operator+(const MatrixU& rhs) ;
+	MatrixU operator-(const MatrixU& rhs);
 private:
 	const ptrdiff_t defaultRow_{ 3 };
 	const ptrdiff_t defaultCol_{ 3 };

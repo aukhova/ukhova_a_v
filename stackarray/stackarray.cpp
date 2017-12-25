@@ -68,6 +68,7 @@ StackArray& StackArray::operator=(const StackArray& rhs)
 			capacity_ = rhs.capacity_;
 		}
 	}
+	else { (*this).Clear(); }
 	return *this;
 }
 

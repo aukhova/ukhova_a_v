@@ -172,38 +172,63 @@ PriorityQueueL& PriorityQueueL::operator=(const PriorityQueueL& rhs)
 {
 	Node* pCopyTo = pHead_;
 	Node* pCopyFrom = rhs.pHead_;
-	while ((pCopyTo->pNext_ != nullptr) && (pCopyFrom->pNext_ != nullptr))
-	{
-		pCopyTo->pData_ = pCopyFrom->pData_;
-		pCopyTo = pCopyTo->pNext_;
-		pCopyFrom = pCopyFrom->pNext_;
-	}
-	if ((pCopyTo->pNext_ == nullptr) && (pCopyFrom->pNext_ != nullptr))
-	{
-		pCopyTo->pData_ = pCopyFrom->pData_;
-		pCopyFrom = pCopyFrom->pNext_;
-		while (pCopyFrom != nullptr)
+	if ((pCopyTo != nullptr) && (pCopyFrom != nullptr)) {
+		while ((pCopyTo->pNext_ != nullptr) && (pCopyFrom->pNext_ != nullptr))
 		{
-			pCopyTo->pNext_ = new Node(nullptr, pCopyFrom->pData_);
+			pCopyTo->pData_ = pCopyFrom->pData_;
 			pCopyTo = pCopyTo->pNext_;
 			pCopyFrom = pCopyFrom->pNext_;
 		}
-	}
-	else
-	{
-		if ((pCopyFrom->pNext_ == nullptr) && (pCopyTo->pNext_ != nullptr))
+		if ((pCopyTo->pNext_ == nullptr) && (pCopyFrom->pNext_ != nullptr))
 		{
 			pCopyTo->pData_ = pCopyFrom->pData_;
-			Node* pContinue(pCopyTo->pNext_);
-			pCopyTo->pNext_ = nullptr;
-			Node* pDelete;
-			while (pContinue != nullptr)
+			pCopyFrom = pCopyFrom->pNext_;
+			while (pCopyFrom != nullptr)
 			{
-				pDelete = pContinue;
-				pContinue = pDelete->pNext_;
-				delete pDelete;
+				pCopyTo->pNext_ = new Node(nullptr, pCopyFrom->pData_);
+				pCopyTo = pCopyTo->pNext_;
+				pCopyFrom = pCopyFrom->pNext_;
+			}
+		}
+		else
+		{
+			if ((pCopyFrom->pNext_ == nullptr) && (pCopyTo->pNext_ != nullptr))
+			{
+				pCopyTo->pData_ = pCopyFrom->pData_;
+				Node* pContinue(pCopyTo->pNext_);
+				pCopyTo->pNext_ = nullptr;
+				Node* pDelete;
+				while (pContinue != nullptr)
+				{
+					pDelete = pContinue;
+					pContinue = pDelete->pNext_;
+					delete pDelete;
+				}
 			}
 		}
 	}
+	else {
+		if ((pCopyTo == nullptr) && (pCopyFrom != nullptr)) {
+			pHead_ = new Node(pCopyTo, pCopyFrom->pData_);
+			pCopyTo = pHead_;
+			pCopyFrom = pCopyFrom->pNext_;
+			while (pCopyFrom != nullptr)
+			{
+				pCopyTo->pNext_ = new Node(nullptr, pCopyFrom->pData_);
+				pCopyTo = pCopyTo->pNext_;
+				pCopyFrom = pCopyFrom->pNext_;
+			}
+		}
+		else {
+			if ((pCopyTo != nullptr) && (pCopyFrom == nullptr)) {
+				while (!isEmpty())
+				{
+					Pop();
+				}
+			}
+		}
+	}
+
 	return *this;
+
 }

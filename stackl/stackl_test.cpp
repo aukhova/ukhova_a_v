@@ -6,10 +6,13 @@ using namespace std;
 int main()
 {
 	StackL x;
+	cout << "StackL x:" << endl;
+	cout << x << endl;
 	x.Push(1);
 	x.Push(2);
 	x.Push(3);
-	cout << "Stack x:" << endl;
+	x.Push(4);
+	cout << "Stack x after push:" << endl;
 	cout << x << endl;
 	x.Pop();
 	cout << "Stack after pop:" << endl;
@@ -23,14 +26,23 @@ int main()
 	cout << z << endl;
 	z.Push(3);
 	x.Clear();
-	cout << "IsEmpty after Clear: " << x.isEmpty() << endl;
+	cout << "x after Clear: " << x << endl;
+	cout << "x IsEmpty after Clear: " << x.isEmpty() << endl;
+	y.Top() = 25;
+	cout << "y.Top() = 25 : " << y.Top() << endl;
+	cout << "Stack y:" << endl;
+	cout << y << endl;
 	z = y;
 	cout << "Stack z=y:" << endl;
 	cout << z << endl;
-	y.Top() = 25;
-	cout << "Change top: " << y.Top() << endl;
-	cout << "Stack y:" << endl;
-	cout << y << endl;
+	z = x;
+	cout << "Stack z=x:" << endl;
+	cout << z << endl;
+	z.Clear();
+	cout << "z.Clear()" << endl;
+	z = y;
+	cout << "Stack z=y:" << endl;
+	cout << z << endl;
 
 	try
 	{

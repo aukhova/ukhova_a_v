@@ -6,14 +6,14 @@ using namespace std;
 int main()
 {
 	PriorityQueueL x;
-	x.Push(1);
-	x.Push(2);
-	x.Push(3);
+	x.PushPr(1);
+	x.PushPr(2);
+	x.PushPr(3);
 	cout << "x:"<< x << endl;
-	PriorityQueueL y(x);
-	cout << "y(x):" << y << endl;
-	y.~PriorityQueueL();
-	cout << "y(x):" << y << endl;
+	PriorityQueueL p(x);
+	cout << "p(x):" << p << endl;
+	PriorityQueueL y;
+	cout << "y:" << y << endl;
 	x.Pop();
 	cout << "x:" << x << endl;
 	cout << "Top: " << x.Top() << endl;
@@ -22,9 +22,9 @@ int main()
 	cout << "x:" << x << endl;
 	x.Pop();
 	cout << "x:" << x << endl;
-	y.Push(5);
-	y.Push(4);
-	y.Push(2);
+	y.PushPr(5);
+	y.PushPr(4);
+	y.PushPr(2);
 	cout << "y:" << y << endl;
 	y.PushPr(3);
 	cout << "y:" << y << endl;
@@ -38,12 +38,23 @@ int main()
 	cout << "y:" << y << endl;
 	y.PushPr(7);
 	cout << "y:" << y << endl;
+	cout << endl;
 
 	PriorityQueueL z;
-	z.Push(1);
-	z.Push(2);
-	z.Push(3);
+	z.PushPr(1);
+	z.PushPr(3);
+	z.PushPr(2);
 	cout << "z:" << z << endl;
+	cout << endl;
+	z = y;
+	cout << "z=y:" << z << endl;
+
+	PriorityQueueL z2;
+	cout << "z2:" << z2 << endl;
+	cout << endl;
+	z = z2;
+	cout << "z=z2:" << z << endl;
+	cout << endl;
 	z = y;
 	cout << "z=y:" << z << endl;
 

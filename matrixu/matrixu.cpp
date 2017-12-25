@@ -154,3 +154,35 @@ MatrixU& MatrixU::resize(const ptrdiff_t r, const ptrdiff_t c)
 	}
 	return *this;
 }
+
+MatrixU MatrixU::operator+(const MatrixU& rhs) 
+{
+
+	if ((nCol_ != rhs.nCol_)||(nRow_ != rhs.nRow_) ){ throw invalid_argument("Error: can't (+) these matrixes"); }
+	for (int jR(0); jR < nRow_; jR++)
+	{
+		for (int iC(0); iC < nCol_; iC++)
+		{
+				(*this).At(jR, iC) += rhs.At(jR, iC);
+		}
+	}
+	return *this;
+	
+	
+}
+
+MatrixU MatrixU::operator-(const MatrixU& rhs)
+{
+
+	if ((nCol_ != rhs.nCol_) || (nRow_ != rhs.nRow_)) { throw invalid_argument("Error: can't (-) these matrixes"); }
+	for (int jR(0); jR < nRow_; jR++)
+	{
+		for (int iC(0); iC < nCol_; iC++)
+		{
+			(*this).At(jR, iC) -= rhs.At(jR, iC);
+		}
+	}
+	return *this;
+
+
+}

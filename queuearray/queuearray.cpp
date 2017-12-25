@@ -162,9 +162,16 @@ QueueArray& QueueArray::operator=(const QueueArray& rhs)
 		else {
 			swap(*this, QueueArray(rhs));
 			capacity_ = rhs.capacity_;
+			pHead_ = rhs.pHead_;
+			pTail_ = rhs.pTail_;
 		}
+		(*this).InStart();
 	}
-	(*this).InStart();
+	else { 
+		capacity_ = 0;
+	   pHead_=0;
+	    pTail_=0;
+	}
 	return *this;
 }
 

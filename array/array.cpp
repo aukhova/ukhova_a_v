@@ -40,16 +40,16 @@ Array::~Array()
 
 int& Array::operator[](const ptrdiff_t i)
 {
-	if (i<capacity_)
+	if ((i<capacity_)&&(i>=0))
 		return pData_[i];
-	else throw invalid_argument("Error: Index can't be >= capacity_");
+	else throw invalid_argument("Error: Index can't be >= capacity_ or index<0");
 }
 
 const int& Array:: operator[](const ptrdiff_t i) const
 {
-	if (i<capacity_)
+	if ((i<capacity_) && (i >= 0))
 	return pData_[i];
-	else throw invalid_argument("Error: Index can't be >= capacity_");
+	else throw invalid_argument("Error: Index can't be >= capacity_ or index<0");
 }
 
 int Array::size() const
@@ -148,5 +148,6 @@ Array& Array::operator=(const Array& rhs)
 {
 	swap(*this, Array(rhs));
 	capacity_ = rhs.capacity_;
+	size_= rhs.size_;
 	return *this;
 }

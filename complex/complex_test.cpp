@@ -51,7 +51,6 @@ int main()
 	cout << "a-=b -> a=" << a << endl;
 	m = 7 - Complex(2);
 	cout << "7 - Complex(2) -> m=" << m << endl;
-	cout << "тут" << endl;
 	a= Complex (2, 3);
 	b=Complex (3, 4);
 	cout << "a=" << a << endl;
@@ -66,6 +65,7 @@ int main()
 	p = (z != b);
 	cout << "z != a" << "->" << p << endl;
 	a = b;
+	cout << "a =b" << "->" << a << endl;
 	cout << "a == b" << "->" << p << endl;
 	
 	return 0;

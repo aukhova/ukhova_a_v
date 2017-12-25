@@ -12,8 +12,9 @@ int main()
 	Rational a(-5, -10);
 	Rational b(9);
 	Rational p;
-	cout << "a=" << a << endl;
-	cout << "b=" << b << endl;
+	cout << "a(-5, -10)->a=" << a << endl;
+	cout << " b(9)->b=" << b << endl;
+	cout << " p->p=" << p << endl;
 	a.norm();
 	cout << "a.norm() -> a=" << a << endl;
 	a += 9;
@@ -39,7 +40,7 @@ int main()
 	b /= 3;
 	cout << "b /=3 b=" << b << endl;
 	a /= Rational(1, 3);
-	cout << "a /= Rational(0, 3) a=" << a << endl;
+	cout << "a /= Rational(1, 3) a=" << a << endl;
 	p = Rational(2, 7) / Rational(5, 7);
 	cout << "p = Rational(2, 7) / Rational(5, 7) -> p=" << p << endl;
 	p = Rational(2, 7) / 5;
@@ -47,11 +48,11 @@ int main()
 	p = 1 / Rational(2, 7);
 	cout << "p = 1/Rational(2, 7)-> p=" << p << endl;
 	a = 7;
-	cout << "a=7 a=" << a << endl;
+	cout << "a=7 ->a=" << a << endl;
 	a *= 5;
-	cout << "a*=5 a=" << a << endl;
+	cout << "a*=5 ->a=" << a << endl;
 	a *= Rational(2, 7);
-	cout << "a *= Rational(2, 7) a=" << a << endl;
+	cout << "a *= Rational(2, 7)-> a=" << a << endl;
 	p = Rational(2, 7) * Rational(5, 7);
 	cout << "p = Rational(2, 7) * Rational(5, 7) -> p=" << p << endl;
 	p = Rational(2, 7) * 5;
@@ -69,6 +70,102 @@ int main()
 	testParse("8/9)");
 	testParse("(8 9)");
 	testParse("(8  /9)");
+
+	cout << "Rational error(-5,0): " <<  endl;
+	try
+	{
+		Rational error(-5,0);
+	}
+	catch (invalid_argument& e)
+	{
+		cout << e.what() << endl;
+	}
+	
+	catch (...)
+	{
+		cout << "Unknown; try else:" << endl;
+		throw;
+	}
+
+	cout << "b /= 0: " << endl;
+	try
+	{
+		b /= 0;
+	}
+	catch (invalid_argument& e)
+	{
+		cout << e.what() << endl;
+	}
+
+	catch (...)
+	{
+		cout << "Unknown; try else:" << endl;
+		throw;
+	}
+
+	cout << "b /= Rational(0, 3): " << endl;
+	try
+	{
+		b /= Rational(0, 3);
+	}
+	catch (invalid_argument& e)
+	{
+		cout << e.what() << endl;
+	}
+
+	catch (...)
+	{
+		cout << "Unknown; try else:" << endl;
+		throw;
+	}
+
+	cout << "p = Rational(2, 7) / Rational(0, 7): " << endl;
+	try
+	{
+		p = Rational(2, 7) / Rational(0, 7);
+	}
+	catch (invalid_argument& e)
+	{
+		cout << e.what() << endl;
+	}
+
+	catch (...)
+	{
+		cout << "Unknown; try else:" << endl;
+		throw;
+	}
+
+	cout << "p = Rational(2, 7) / 0: " << endl;
+	try
+	{
+		p = Rational(2, 7) / 0;
+	}
+	catch (invalid_argument& e)
+	{
+		cout << e.what() << endl;
+	}
+
+	catch (...)
+	{
+		cout << "Unknown; try else:" << endl;
+		throw;
+	}
+
+	cout << "p = 1/Rational(0, 7): " << endl;
+	try
+	{
+		p = 1/Rational(0, 7);
+	}
+	catch (invalid_argument& e)
+	{
+		cout << e.what() << endl;
+	}
+
+	catch (...)
+	{
+		cout << "Unknown; try else:" << endl;
+		throw;
+	}
 
 	return 0;
 }

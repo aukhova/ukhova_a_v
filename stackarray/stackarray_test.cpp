@@ -12,7 +12,7 @@ int main()
 	cout << "Stack x:" << endl;
 	cout << x << endl;
 	x.Pop();
-	cout << "Stack after pop:" << endl;
+	cout << "x.Pop():" << endl;
 	cout << x << endl;
 	cout << "IsEmpty: " << x.isEmpty() << endl;
 	StackArray y(x);
@@ -21,19 +21,30 @@ int main()
 	StackArray z;
 	cout << "Stack z:" << endl;
 	cout << z << endl;
+	z.Push(2);
+	z.Push(3);
+	cout << "Stack z:" << endl;
+	cout << z << endl;
 	x.Clear();
 	cout << "IsEmpty after Clear: " << x.isEmpty() << endl;
-	z = y;
-	cout << "Stack z=y:" << endl;
-	cout << z << endl;
-	cout << "Stack y:" << endl;
-	cout << y << endl;
 	y.Top() = 25;
 	cout << "Change top: " << y.Top() << endl;
 	cout << "Stack y:" << endl;
 	cout << y << endl;
-	y.~StackArray();
-	cout <<"~y  "<< y << endl;
+	z = y;
+	cout << "Stack z=y:" << endl;
+	cout << z << endl;
+	z = x;
+	cout << "Stack z=x:" << endl;
+	cout << z << endl;
+	x = y;
+	cout << "Stack x=y:" << endl;
+	cout << x << endl;
+	x.Clear();
+	cout << "Stack y:" << endl;
+	cout << y << endl;
+	
+	
 
 	try
 	{
